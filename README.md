@@ -91,14 +91,8 @@ You can change animation settings via the `config.globe.ts` file
 | arcAlt   | number | 0.2            |
 | color    | string | "#FFFFFF"      |
 
-## 🪄 Preview
-
-Access <https://react-anim-globe.vercel.app>
-
-## 📝 License
-
-This project is under MIT licence. See the archive [LICENSE](LICENSE.md) to more details.
-
 ---
 
-Made with 💜 by [IGS Design](https://igsdesign.com.br) - Igor Santos 👋
+✨ Originated from IGS Design - Igor Santos
+
+Github: https://github.com/igorssc/react-globe

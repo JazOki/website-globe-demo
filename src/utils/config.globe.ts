@@ -2,12 +2,12 @@ export const globeConfig = {
   pointSize: 1,
   globeColor: "#000000",
   showAtmosphere: true,
-  atmosphereColor: "#ffffff",
+  atmosphereColor: "#06EE8D",
   atmosphereAltitude: 0.1,
   emissive: "#000000",
   emissiveIntensity: 0.1,
   shininess: 0.9,
-  polygonColor: "rgba(255,255,255,0.7)",
+  polygonColor: "rgba(6, 238, 141, 1)",
   ambientLight: "#000000",
   directionalLeftLight: "#000000",
   directionalTopLight: "#ffffff",
@@ -18,7 +18,7 @@ export const globeConfig = {
   maxRings: 3,
   initialPosition: { lat: 22.3193, lng: 114.1694 },
   autoRotate: true,
-  autoRotateSpeed: 2.5,
+  autoRotateSpeed: 3.5,
 };
 
 export const flights = [

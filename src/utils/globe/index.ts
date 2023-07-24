@@ -1,5 +1,5 @@
 import { Fog, PerspectiveCamera, Scene, WebGLRenderer } from "three";
-import { flights as flightsDefault } from "../config.globe";
+//import { flights as flightsDefault } from "../config.globe";
 import { Globe } from "./components/globe";
 import { createLights } from "./components/lights";
 import { aspect, cameraZ, canvasHeight, canvasWidth } from "./systems/config";
@@ -89,11 +89,11 @@ class World {
     this.globeConfig.directionalTopLight = props?.directionalTopLight;
     this.globeConfig.pointLight = props?.pointLight;
 
-    if (flights) {
-      flights.map((flight) => this.flights.push(flight));
-    } else {
-      flightsDefault.map((flight) => this.flights.push(flight));
-    }
+    // if (flights) {
+    //   flights.map((flight) => this.flights.push(flight));
+    // } else {
+    //   flightsDefault.map((flight) => this.flights.push(flight));
+    // }
 
     this.scene = new Scene();
 
@@ -138,8 +138,8 @@ class World {
         emissive: this.globeConfig.emissive,
         emissiveIntensity: this.globeConfig.emissiveIntensity,
         shininess: this.globeConfig.shininess,
-        flightTime: this.globeConfig.flightTime,
-        flightLength: this.globeConfig.flightLength,
+       // flightTime: this.globeConfig.flightTime,
+       // flightLength: this.globeConfig.flightLength,
         rings: this.globeConfig.rings,
         maxRings: this.globeConfig.maxRings,
       },

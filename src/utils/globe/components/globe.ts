@@ -1,6 +1,6 @@
 import { Color } from "three";
 import { FlightsProps } from "..";
-import flightsDefault from "../assets/arcs.json";
+//import flightsDefault from "../assets/arcs.json";
 import countries from "../assets/globe.json";
 import { Globe as ThreeGlobe } from "../systems/Globe";
 import { genRandomNumbers, hexToRgb } from "../systems/utils";
@@ -15,8 +15,8 @@ interface GlobeProps {
   emissive?: string;
   emissiveIntensity?: number;
   shininess?: number;
-  flightTime?: number;
-  flightLength?: number;
+  //flightTime?: number;
+  //flightLength?: number;
   rings?: number;
   maxRings?: number;
 }
@@ -41,12 +41,12 @@ class Globe {
   emissive: string;
   emissiveIntensity: number;
   shininess: number;
-  flightTime: number;
-  flightLength: number;
+  //flightTime: number;
+  //flightLength: number;
   rings: number;
   maxRings: number;
 
-  flights: FlightsProps[] = [];
+  //flights: FlightsProps[] = [];
 
   RING_PROPAGATION_SPEED = 3;
   interval = 2;
@@ -63,8 +63,8 @@ class Globe {
     emissive: "#000000",
     emissiveIntensity: 0.1,
     shininess: 0.9,
-    flightTime: 2000,
-    flightLength: 0.9,
+    //flightTime: 2000,
+    //flightLength: 0.9,
     rings: 1,
     maxRings: 3,
   };
@@ -83,15 +83,15 @@ class Globe {
     this.emissiveIntensity =
       props.emissiveIntensity || Globe.defaultProps.emissiveIntensity;
     this.shininess = props.shininess || Globe.defaultProps.shininess;
-    this.flightTime = props.flightTime || Globe.defaultProps.flightTime;
-    this.flightLength = props.flightLength || Globe.defaultProps.flightLength;
+    //this.flightTime = props.flightTime || Globe.defaultProps.flightTime;
+    //this.flightLength = props.flightLength || Globe.defaultProps.flightLength;
     this.rings = props.rings || Globe.defaultProps.rings;
     this.maxRings = props.maxRings || Globe.defaultProps.maxRings;
 
     if (flights.length > 0) {
-      flights.map((flight) => this.flights.push(flight));
+      //flights.map((flight) => this.flights.push(flight));
     } else {
-      this.flights = flightsDefault.flights;
+      //this.flights = flightsDefault.flights;
     }
 
     this.instance = new ThreeGlobe({
@@ -131,7 +131,7 @@ class Globe {
   initAnimationData(delay: number) {
     setTimeout(() => {
       this.instance
-        .arcsData(this.flights)
+        //.arcsData(this.flights)
         .arcStartLat((d) => (d as { startLat: number }).startLat * 1)
         .arcStartLng((d) => (d as { startLng: number }).startLng * 1)
         .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
@@ -143,10 +143,9 @@ class Globe {
         .arcStroke((e) => {
           return [0.32, 0.28, 0.3][Math.round(Math.random() * 2)];
         })
-        .arcDashLength(this.flightLength)
+       // .arcDashLength(this.flightLength)
         .arcDashInitialGap((e) => (e as { order: number }).order * 1)
-        .arcDashGap(15)
-        .arcDashAnimateTime((e) => this.flightTime)
+        //.arcDashAnimateTime((e) => this.flightTime)
         .pointsData(this.pointsData)
         .pointColor((e) => (e as { color: string }).color)
         .pointsMerge(true)
@@ -156,7 +155,7 @@ class Globe {
         .ringColor((e: any) => (t: any) => e.color(t))
         .ringMaxRadius(this.maxRings)
         .ringPropagationSpeed(this.RING_PROPAGATION_SPEED)
-        .ringRepeatPeriod((this.flightTime * this.flightLength) / this.rings);
+       // .ringRepeatPeriod((this.flightTime * this.flightLength) / this.rings);
     }, delay);
   }
 
@@ -178,38 +177,38 @@ class Globe {
   }
 
   _buildData() {
-    const arcs = this.flights;
-    let points = [];
-    for (let i = 0; i < arcs.length; i++) {
-      const arc = arcs[i];
-      const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
-      points.push({
-        size: this.pointSize,
-        order: arc.order,
-        color: (t: number) => `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${1 - t})`,
-        label: arc.from || "",
-        lat: arc.startLat,
-        lng: arc.startLng,
-      });
-      points.push({
-        size: this.pointSize,
-        order: arc.order,
-        color: (t: number) => `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${1 - t})`,
-        label: arc.to || "",
-        lat: arc.endLat,
-        lng: arc.endLng,
-      });
-    }
+    //const arcs = this.flights;
+    //let points = [];
+    // for (let i = 0; i < arcs.length; i++) {
+    //   const arc = arcs[i];
+    //   const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
+    //   points.push({
+    //     size: this.pointSize,
+    //     order: arc.order,
+    //     color: (t: number) => `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${1 - t})`,
+    //     label: arc.from || "",
+    //     lat: arc.startLat,
+    //     lng: arc.startLng,
+    //   });
+    //   points.push({
+    //     size: this.pointSize,
+    //     order: arc.order,
+    //     color: (t: number) => `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${1 - t})`,
+    //     label: arc.to || "",
+    //     lat: arc.endLat,
+    //     lng: arc.endLng,
+    //   });
+    // }
 
     // remove duplicates for same lat and lng
-    this.pointsData = points.filter(
-      (v, i, a) =>
-        a.findIndex((v2) =>
-          ["lat", "lng"].every(
-            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"]
-          )
-        ) === i
-    );
+    // this.pointsData = points.filter(
+    //   (v, i, a) =>
+    //     a.findIndex((v2) =>
+    //       ["lat", "lng"].every(
+    //         (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"]
+    //       )
+    //     ) === i
+    // );
   }
 
   _buildMaterial() {

@@ -1,8 +1,9 @@
 :root {
-  --background-image: url("../public/the-beautiful-shining-stars-in-the-night-sky.jpg");
-  --background-size: cover;
-  --background-repeat: no-repeat;
-}
+  /* --background-image: url("../public/the-beautiful-shining-stars-in-the-night-sky.jpg"); */
+    --background-size: cover;
+    --background-repeat: no-repeat;
+    background-color: black;
+  }
 
 body {
   margin: 0;

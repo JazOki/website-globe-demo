@@ -3,14 +3,15 @@ import { globeConfig } from "./utils/config.globe";
 import { World } from "./utils/globe";
 
 function App() {
-  useEffect(() => {
+  const startWorld = () => {
     if (!document.getElementById("globe-canvas")) {
       const container = document.querySelector("#scene-container");
       const world = new World(container as Element, undefined, globeConfig);
       world.start();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
+
+  useEffect(startWorld, []);
 
   return (
     <>
